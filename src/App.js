@@ -4,6 +4,8 @@ import './App.css';
 import { Switch, Route, Link } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+
 
 const App = () => {
   return (
@@ -15,13 +17,19 @@ const App = () => {
         <div>
           <Link to="/login">Login</Link>
         </div>
+        <div>
+          <Link to="/Dashboard">Dashboard</Link>
+        </div>
       </div>
       <Switch>
-        <Route path="/login" component={Home} />
-        <Route path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Home} />
       </Switch>
     </div>
   );
 }
+const mapStateToProps = state => ({
+  isLoggedIn: state.userReducer.isLoggedIn,
+})
 
-export default App;
+export default connect() (App);
